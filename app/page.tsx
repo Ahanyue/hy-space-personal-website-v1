@@ -9,31 +9,32 @@ import {
   Mail, 
   Terminal, 
   Music,
-  Pause,
-  Play,
-  Sparkles,
-  Heart,
-  PenTool,
-  MessageCircle,
-  Check
+  Pause, 
+  Play, 
+  Sparkles, 
+  Heart, 
+  PenTool, 
+  MessageCircle, 
+  Check 
 } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
-/*                                1. 配置数据 (Data)                           */
+/*                                1. 站点配置数据 (Data)                       */
 /* -------------------------------------------------------------------------- */
 
 const siteConfig = {
   profile: {
     name: "HuiYing",
     role: "AI Product Manager",
-    // 建议之后在 public 文件夹放一张自己的照片改名为 avatar.png
+    // 这里的头像建议后续换成你自己的图片路径，例如 "/avatar.jpg"
     avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=HuiYing&backgroundColor=e5e5e5", 
-    bio: "在理性逻辑与感性审美之间寻找平衡。喜欢做有意思的东西，创造有意思的体验！",
+    bio: "嘿👋！我是huiying，我希望能在理性逻辑与感性审美之间寻找平衡。目前专注于 AI 产品的定义与落地，想要用 Vibecoding 做一些有趣有意思的东西。",
   },
   location: {
     city: "深圳, CN",
     coordinates: "22.5431° N, 114.0579° E",
   },
+  // 个人特质 (原 Tech Stack)
   capabilities: [
     { name: "Figma", icon: <PenTool size={18} /> },
     { name: "AI Product", icon: <Sparkles size={18} /> },
@@ -41,12 +42,14 @@ const siteConfig = {
     { name: "INFJ", icon: <Heart size={18} /> },
     { name: "后摇", icon: <Music size={18} /> },
   ],
+  // 碎碎念
   thoughts: [
     { id: 1, date: "Today", content: "设计不仅仅是外观，更是它是如何工作的。" },
     { id: 2, date: "Yesterday", content: "Tree-Ring 灰度测试中：真实的线下反馈比实验室模拟深刻得多。" },
     { id: 3, date: "Oct 24", content: "有时候容易找到用户验证的产品，虽然好验证，但竞争也是红海" },
     { id: 4, date: "Oct 20", content: "太开心了！第一个AI产品域名：tree-memory.com.cn" },
   ],
+  // 文章
   writings: [
     {
       id: 1,
@@ -56,14 +59,15 @@ const siteConfig = {
     },
     {
       id: 2,
-      title: "提示词工程（Prompt Engineering）：如何通过逻辑驾驭 AI 的不确定性？",
+      title: "提示词工程：如何通过逻辑驾驭 AI 的不确定性？",
       summary: "基于冠军项目的实战总结，分享结构化 Prompt 的设计思路。",
       date: "2025-12-20",
     },
   ],
+  // 社交链接 (isCopy: true 代表点击复制，false 代表跳转)
   socials: [
-    { name: "WeChat", value: "HuiYing_Wechat", icon: <MessageCircle size={20} />, isCopy: true },
-    { name: "Email", value: "huiying@example.com", icon: <Mail size={20} />, isCopy: true },
+    { name: "WeChat", value: "lluttermoon", icon: <MessageCircle size={20} />, isCopy: true },
+    { name: "Email", value: "384496557@qq.com", icon: <Mail size={20} />, isCopy: true },
     { name: "GitHub", value: "https://github.com/Ahanyue", icon: <Github size={20} />, isCopy: false },
   ],
   music: {
@@ -76,7 +80,11 @@ const siteConfig = {
 /*                            2. 基础组件与样式 (UI)                            */
 /* -------------------------------------------------------------------------- */
 
-const Card = ({ children, className, colSpan, rowSpan, noPadding = false }: any) => {
+/**
+ * Card 组件
+ * @param overflowVisible 如果为 true，则允许内容(如气泡)超出卡片边界显示
+ */
+const Card = ({ children, className, colSpan, rowSpan, noPadding = false, overflowVisible = false }: any) => {
   return (
     <motion.div
       variants={{
@@ -86,7 +94,7 @@ const Card = ({ children, className, colSpan, rowSpan, noPadding = false }: any)
       whileHover={{ scale: 1.01, boxShadow: "0px 10px 30px rgba(0,0,0,0.5)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={`
-        relative overflow-hidden rounded-3xl 
+        relative rounded-3xl 
         bg-zinc-900/40 backdrop-blur-xl 
         border border-white/10 
         shadow-lg flex flex-col
@@ -94,10 +102,13 @@ const Card = ({ children, className, colSpan, rowSpan, noPadding = false }: any)
         ${rowSpan || "row-span-1"} 
         ${className}
         ${noPadding ? "p-0" : "p-6"}
+        ${overflowVisible ? "overflow-visible" : "overflow-hidden"}
       `}
     >
+      {/* 噪点背景层 */}
       <div className="absolute inset-0 opacity-10 pointer-events-none z-0 mix-blend-overlay" 
            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+      
       <div className="relative z-10 w-full h-full flex flex-col">
         {children}
       </div>
@@ -156,6 +167,7 @@ const CapabilitiesCard = () => (
         animate={{ x: [0, -400] }}
         transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
       >
+        {/* 重复两遍以实现无缝滚动 */}
         {[...siteConfig.capabilities, ...siteConfig.capabilities].map((item, idx) => (
           <div key={idx} className="flex items-center gap-2 text-zinc-300 bg-white/5 px-4 py-2 rounded-2xl border border-white/10 whitespace-nowrap shadow-sm">
             <span className="text-blue-400">{item.icon}</span>
@@ -167,12 +179,14 @@ const CapabilitiesCard = () => (
   </Card>
 );
 
+// 单个社交图标组件（包含复杂的交互逻辑）
 const SocialIcon = ({ item }: { item: any }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleClick = () => {
     if (item.isCopy) {
+      // 复制逻辑
       navigator.clipboard.writeText(item.value);
       setCopied(true);
       setShowTooltip(true);
@@ -181,24 +195,33 @@ const SocialIcon = ({ item }: { item: any }) => {
         setShowTooltip(false);
       }, 2000);
     } else {
+      // 跳转逻辑
       window.open(item.value, "_blank");
     }
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center justify-center">
       <AnimatePresence>
         {showTooltip && (
           <motion.div 
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: -45, scale: 1 }}
+            animate={{ opacity: 1, y: -55, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-xs text-white z-50 flex items-center gap-2 shadow-2xl"
+            // pointer-events-none 解决鼠标遮挡闪烁问题
+            className="absolute pointer-events-none whitespace-nowrap px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-xs text-white z-[100] flex items-center gap-2 shadow-2xl"
           >
-            {copied ? <><Check size={12} className="text-green-400" /> 已复制</> : item.value}
+            {copied ? (
+              <span className="flex items-center gap-1"><Check size={12} className="text-green-400" /> 已复制</span>
+            ) : (
+              item.value
+            )}
+            {/* 小三角 */}
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white/10 border-r border-b border-white/20 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
+
       <motion.button
         whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
         whileTap={{ scale: 0.9 }}
@@ -214,7 +237,8 @@ const SocialIcon = ({ item }: { item: any }) => {
 };
 
 const SocialsCard = () => (
-  <Card colSpan="md:col-span-1" rowSpan="md:row-span-1" className="flex items-center justify-center gap-4">
+  // 必须开启 overflowVisible，否则气泡会被切掉
+  <Card colSpan="md:col-span-1" rowSpan="md:row-span-1" overflowVisible={true} className="flex items-center justify-center gap-4">
     {siteConfig.socials.map((social) => (
       <SocialIcon key={social.name} item={social} />
     ))}
@@ -294,6 +318,10 @@ const AestheticCard = () => {
   );
 };
 
+/* -------------------------------------------------------------------------- */
+/*                               4. 主页面入口 (Layout)                        */
+/* -------------------------------------------------------------------------- */
+
 export default function BentoPortfolio() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-blue-500/30 font-sans p-4 md:p-8 lg:p-12 flex items-center justify-center">
@@ -315,4 +343,5 @@ export default function BentoPortfolio() {
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </div>
-  ); }
+  );
+}
