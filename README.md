@@ -1,24 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# My Personal Portfolio 🚀
 
-First, run the development server:
+This is my personal website crafted with a focus on details, motion, and visual aesthetics.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS
+- **Animation:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🍱 **Bento Grid Layout** - Organized and modular content.
+- 🌫️ **Glassmorphism** - Modern frosted glass aesthetic.
+- ⚡ **Performance** - Fast loading and smooth transitions.
+- 📱 **Responsive** - Looks great on mobile and desktop.
+
+---
+
+Designed and developed by [Huiying].
 
 ## Learn More
 
