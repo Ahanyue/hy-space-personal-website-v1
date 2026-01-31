@@ -28,7 +28,7 @@ const siteConfig = {
     role: "AI Product Manager",
     // 这里的头像建议后续换成你自己的图片路径，例如 "/avatar.jpg"
     avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Coco&glassesProbability=100&brows=variant05", 
-    bio: "嘿👋！我是huiying，我希望能在理性逻辑与感性审美之间寻找平衡。目前专注于 AI 产品的定义与落地，想要用 Vibecoding 做一些有趣有意思的东西。",
+    bio: "嘿👋！我是huiying，这是我的个人地盘，欢迎你来了解我。目前正在叮叮当当做一些好玩的东西（AI小项目）",
   },
   location: {
     city: "深圳, CN",
