@@ -77,7 +77,7 @@ It moves away from traditional text-heavy layouts, utilizing a **Bento Grid** st
 | **Icons** | Lucide React |
 | **Deployment** | Vercel |
 
-
+ resigned by huiying
 ---
 
 
