@@ -28,7 +28,7 @@ const siteConfig = {
     role: "AI Product Manager",
     // 这里的头像建议后续换成你自己的图片路径，例如 "/avatar.jpg"
     avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Coco&glassesProbability=100&brows=variant05", 
-    bio: "嘿👋！我是huiying，这是我的个人地盘，欢迎你来了解我。目前正在叮叮当当做一些好玩的东西（AI小项目）",
+    bio: "嘿👋！我是huiying，恭喜你发现我的的个人地盘！目前正在叮叮当当制造一些好玩的东西（AI小项目），我坚信创造与想象是人类最酷的事，比起单纯地勾勒界面，我更享受用代码将想象力变为现实的过程。欢迎在这里发现我关于 AI、设计与技术的思考！",
   },
   location: {
     city: "深圳, CN",
@@ -36,11 +36,11 @@ const siteConfig = {
   },
   // 个人特质 (原 Tech Stack)
   capabilities: [
-    { name: "Figma", icon: <PenTool size={18} /> },
+    { name: "Cursor", icon: <PenTool size={18} /> },
     { name: "AI Product", icon: <Sparkles size={18} /> },
-    { name: "Vibecoding", icon: <Terminal size={18} /> },
-    { name: "INFJ", icon: <Heart size={18} /> },
-    { name: "后摇", icon: <Music size={18} /> },
+    { name: "Coding", icon: <Terminal size={18} /> },
+    { name: "Create", icon: <Heart size={18} /> },
+    { name: "后摇｜Sigur Rós", icon: <Music size={18} /> },
   ],
   // 碎碎念
   thoughts: [
